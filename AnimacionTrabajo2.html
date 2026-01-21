@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimacionTrabajo(Keyframes)</title>
+</head>
+
+<style>
+
+    .cajas {
+        width: 100px ;
+        height: 100px;
+        background-color: #353935;
+        position: absolute;
+
+    }
+
+    .cintas_h {
+        width: 400px;
+        height: 70px;
+        background-color: #36454F;
+        position: relative;
+    }
+
+    .cintas_v {
+        width: 70px;
+        height: 400px;
+        background-color: #36454F;
+        position: relative;
+    }
+
+    .metal {
+        width: 50px;
+        height: 50px;
+        background-color: silver;
+        position: absolute;
+    }
+
+    .pieza1 {
+            width: 100px;
+            height: 25px;
+            background-color: silver;
+            position: absolute;
+        }
+    .pieza2 {
+        width: 70px;
+        height: 25px;
+        background-color: silver;
+        position: absolute;
+    }
+
+    .coche{
+        top: 20px; 
+        left: 450px;
+        position: absolute;
+    }
+    .cocheC {
+        background-color: silver;
+        position: absolute;
+        top: 430px;
+        left: 450px;
+    }
+
+    .cocheT {
+        position: absolute; 
+        top: 455px; 
+        left: 20px;
+    }
+
+    .ventana {
+        background-color: #89CFF0;
+        position: absolute;
+        width: 30px;
+        height: 15px;
+        top: -15px; 
+        left: 20px;
+    }
+
+    .luz {
+        background-color: #FFEA00;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 0px; 
+        left: 0px;
+    }
+
+    .rueda {
+        background-color: #36454F;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+
+    @keyframes metal{
+        0%{transform: translate(0px, 0px);}
+        
+        100%{transform: translate(430px, 0px);}
+    }
+
+    @keyframes coche{
+        0%{transform: translateY(0px);}
+
+        30%{transform: translateY(5px)}
+
+        100%{transform: translateY(430px);}
+    }
+
+    @keyframes moverCocheC {
+        0% { transform: translateX(0px); }
+        100% { transform: translateX(-431px); }
+    }
+
+    @keyframes cocheTerminado {
+    0% { transform: translateY(0px); }
+    20% {transform: translateY(0px);}
+    70% {transform: translateY(-200px);}
+    100% { transform: translate(-200px, -200px); }
+}
+
+
+</style>
+<body>
+
+    <!-- CINTAS -->
+    <div class="cintas_h" style="top: 4vh; left: 50px;"></div>
+    <div class="cintas_v" style="top: 0vh; left: 460px;"></div>
+    <div class="cintas_h" style="top: -8vh; left: 70px;"></div>
+
+    <button id="startBtn">Iniciar producción</button>
+    <!--Metal-->
+    <div class="metal" style="top: 47px; left: 60px;"></div>
+
+    <!--COCHE SIN COLOR-->
+    <div class="coche">
+        <div class="pieza1" style="top: 25px;"></div>
+        <div class="pieza2" style=" left: 17px;"></div>
+    </div>
+
+    <!--Añadir color coche-->
+    <div class="pintura" id="pintura">
+        <p>Color de pintura del coche</p>
+        <div class="cocheC" id="cocheC">
+            <div class="pieza1" style="top: 25px;"></div>
+            <div class="pieza2" style=" left: 17px;"></div>
+        </div>
+
+        <input type="color" id="colorPicker" value="#cc0000"> 
+        <button id="paintBtn">Pintar el coche</button>
+    </div>
+    <button id="moveCBtn">Mover Coche al montaje final</button>
+
+    <!--COCHE TERMINADO-->
+    <div class="cocheT" id="cocheT">
+        <div class="pieza1"></div>
+        <div class="pieza2" style="top: -20px; left: 15px;"></div>
+
+        <div class="ventana"></div>
+        <div class="luz"></div>
+        <div class="rueda" style="top: 15px; left: 10px;"></div>
+        <div class="rueda" style="top: 15px; left: 70px;"></div>
+    
+    </div>
+
+    <!-- CAJAS DE PRODUCCIÓN -->
+    <div class="cajas" style="top: 20px; left: 20px;"></div>
+    <div class="cajas" style="top: 20px; left: 450px;"></div>
+    <div class="cajas" style="top: 400px; left: 20px;"></div>
+    <div class="cajas" style="top: 400px; left: 450px;"></div>
+
+    <p>Añadir ventanas, ruedas, luces, y motor</p>
+    <button id="motorBtn">Añadir motor</button>
+    
+    <button id="resetBtn">Reiniciar producción</button>
+
+
+    <script>
+    
+    const cocheC = document.getElementById('cocheC');
+    const paintBtn = document.getElementById('paintBtn');
+    const colorPicker = document.getElementById('colorPicker');
+    const moveCBtn = document.getElementById('moveCBtn');
+    const cocheT = document.getElementById('cocheT');
+    const motorBtn = document.getElementById('motorBtn');
+    
+    const startBtn = document.getElementById('startBtn');
+    const metal = document.querySelector('.metal');
+    const cocheSinColor = document.querySelector('.coche');
+
+    //const resetBtn = document.getElementById('resetBtn');
+
+
+    startBtn.addEventListener('click', function() {
+
+        // Iniciar animación del metal
+        metal.style.animation = "metal 6s forwards";
+
+        // Iniciar animación del coche sin color
+        cocheSinColor.style.animation = "coche 12s forwards";
+
+        startBtn.disabled = true;
+    });
+
+
+    // Boton para seleccionar el Color del Coche
+    paintBtn.addEventListener('click', function() {
+        const color = colorPicker.value;
+
+        cocheC.style.backgroundColor = color;
+
+        //Uso de Ia para saber como cambiar el color de las formas
+        
+        //Pintar CocheC
+        const piezas = cocheC.querySelectorAll('.pieza1, .pieza2');
+        piezas.forEach(p => p.style.backgroundColor = color);
+
+        // Coincidir color cocheT con CocheC
+        cocheT.style.backgroundColor = color;
+        const piezasT = cocheT.querySelectorAll('.pieza1, .pieza2');
+        piezasT.forEach(p => p.style.backgroundColor = color);
+
+        paintBtn.disabled = true;
+    });
+
+    // Mover coche con Color solo cuando se pulse el botón
+    moveCBtn.addEventListener('click', function() {
+        cocheC.style.animation = "moverCocheC 4s forwards";
+        moveCBtn.disabled = true;
+        paintBtn.disabled = true;
+
+    });
+
+    //AÑADIR MOTOR
+    motorBtn.addEventListener('click', function() {
+        cocheT.style.animation = "cocheTerminado 4s forwards";
+        motorBtn.disabled = true;
+    });
+
+    resetBtn.addEventListener('click', function() {
+
+        // Quitar animaciones
+        metal.style.animation = "none";
+        cocheSinColor.style.animation = "none";
+        cocheC.style.animation = "none";
+        cocheT.style.animation = "none";
+
+        // Forzar reflow para que las animaciones puedan reiniciarse después
+        void metal.offsetWidth;
+
+        // Restaurar posiciones iniciales
+        metal.style.transform = "translate(0,0)";
+        cocheSinColor.style.transform = "translate(0,0)";
+        cocheC.style.transform = "translate(0,0)";
+        cocheT.style.transform = "translate(0,0)";
+
+        // Restaurar colores
+        cocheC.style.backgroundColor = "silver";
+        cocheT.style.backgroundColor = "silver";
+
+        const piezasC = cocheC.querySelectorAll('.pieza1, .pieza2');
+        piezasC.forEach(p => p.style.backgroundColor = "silver");
+
+        const piezasT = cocheT.querySelectorAll('.pieza1, .pieza2');
+        piezasT.forEach(p => p.style.backgroundColor = "silver");
+
+        // Reactivar botones
+        startBtn.disabled = false;
+        paintBtn.disabled = false;
+        moveCBtn.disabled = false;
+        motorBtn.disabled = false;
+
+        // Reset del color picker
+        colorPicker.value = "#cc0000";
+    });
+</script>
+</body>
+</html>
