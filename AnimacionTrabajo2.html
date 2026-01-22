@@ -210,7 +210,7 @@
 
         cocheC.style.backgroundColor = color;
 
-        //Uso de Ia para saber como cambiar el color de las formas
+        //Uso de IA para saber como cambiar el color de las formas
         
         //Pintar CocheC
         const piezas = cocheC.querySelectorAll('.pieza1, .pieza2');
@@ -220,7 +220,7 @@
         cocheT.style.backgroundColor = color;
         const piezasT = cocheT.querySelectorAll('.pieza1, .pieza2');
         piezasT.forEach(p => p.style.backgroundColor = color);
-
+        //Fin uso de IA
         paintBtn.disabled = true;
     });
 
@@ -239,7 +239,7 @@
     });
 
     resetBtn.addEventListener('click', function() {
-
+        //Uso de IA para el reset
         // Quitar animaciones
         metal.style.animation = "none";
         cocheSinColor.style.animation = "none";
@@ -265,14 +265,16 @@
         const piezasT = cocheT.querySelectorAll('.pieza1, .pieza2');
         piezasT.forEach(p => p.style.backgroundColor = "silver");
 
+        // Reset del color picker
+        colorPicker.value = "#cc0000";
+        
+        //Fin uso de IA
+
         // Reactivar botones
         startBtn.disabled = false;
         paintBtn.disabled = false;
         moveCBtn.disabled = false;
         motorBtn.disabled = false;
-
-        // Reset del color picker
-        colorPicker.value = "#cc0000";
     });
 </script>
 </body>
