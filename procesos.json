@@ -1,9 +1,0 @@
-{
-    "coches": {
-        "carroceria": 1,
-        "ruedas": 1,
-        "ventanas": 1,
-        "motor": 1,
-        "luces": 1
-    }
-}

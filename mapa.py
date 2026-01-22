@@ -28,18 +28,17 @@ def ayuda():
                                 print("En esta ultima parte, se instalan los sistemas de iluminación y señalización.")
                         case _: # En el caso que no introduzca ninguna de las opciones validas
                                 print("opcion no válida. Introduce un número del 1 al 5.")
-# Lee el estado del coche del archivo procesos.json
 def leerProcesos():
+        # Lee el estado del coche del archivo procesos.json
         with open(ARCHIVO, "r") as f:
                 global proceso
                 proceso = json.load(f)
-# Guarda el estado del coche en el archivo procesos.json
 def GuardarProceso():
+        # Guarda el estado del coche en el archivo procesos.json
         with open(ARCHIVO, "w") as f:
                 json.dump(proceso, f, indent=4)
-# Funciones de montaje para la carroceria, ruedas, ventanas, motor y luces
-# De la manera en la que se comprueba que el montaje se monta en el orden indicado en el mapa visual de la fábrica
 def carroceria():
+        # Funcion de montaje de la carroceria y se comprueba que el montaje se realiza en el orden indicado en el mapa visual de la fábrica 
         if proceso['coches']['carroceria'] == 0:
                 proceso['coches']['carroceria'] = 1
                 print("Acabas de colocar la carroceria.")
@@ -47,6 +46,7 @@ def carroceria():
         else:
                 print("La carrocería ya estaba colocado.")
 def ruedas():
+        # Funcion de montaje de las ruedas y se comprueba que el montaje se realiza en el orden indicado en el mapa visual de la fábrica
         if proceso['coches']['ruedas'] == 0 and proceso['coches']['carroceria'] == 1:
                 proceso['coches']['ruedas'] = 1
                 print("Acabas de colocar las ruedas.")
@@ -56,6 +56,7 @@ def ruedas():
         else:
                 print("Las ruedas ya estaban colocadas.")
 def ventanas():
+        # Funcion de montaje de las ventanas y se comprueba que el montaje se realiza en el orden indicado en el mapa visual de la fábrica
         if proceso['coches']['ventanas'] == 0 and proceso['coches']['ruedas'] == 1:
                 proceso['coches']['ventanas'] = 1
                 print("Acabas de colocar las ventanas.")
@@ -65,6 +66,7 @@ def ventanas():
         else:
                 print("Las ventanas ya estaban colocadas.")
 def motor():
+        # Funcion de montaje del motor y se comprueba que el montaje se realiza en el orden indicado en el mapa visual de la fábrica
         if proceso['coches']['motor'] == 0 and proceso['coches']['ventanas'] == 1:
                 proceso['coches']['motor'] = 1
                 print("Acabas de colocar el motor.")
@@ -74,6 +76,7 @@ def motor():
         else:
                 print("El motor ya estaba colocada.")
 def luces():
+        # Funcion de montaje de las luces y se comprueba que el montaje se realiza en el orden indicado en el mapa visual de la fábrica
         if proceso['coches']['luces'] == 0 and proceso['coches']['motor'] == 1:
                 proceso['coches']['luces'] = 1
                 print("Acabas de colocar las luces.")
@@ -82,23 +85,23 @@ def luces():
                 print("Debes colocar el motor antes que las luces.")
         else:
                 print("Las luces ya estaban colocadas.")
-# Funcion para comprobar si se ha montado cada una de las partes correctamente.
-# En el caso que falten cosas muestra mensaje que faltan cosas por colocar.
 def comprobacion():
+        # Funcion para comprobar si se ha montado cada una de las partes correctamente.
+        # En el caso que falten cosas muestra mensaje que faltan cosas por colocar.
         if proceso['coches']['carroceria'] == 1 and proceso['coches']['ruedas'] == 1 and proceso['coches']['ventanas'] == 1 and proceso['coches']['motor'] == 1 and proceso['coches']['luces'] == 1:
                 print("Coche montado correctamente.")
         else:
                 print("Faltan cosas por colocar.")
-# Reinicia el proceso para montar otro coche.
 def ReiniciarProceso():
+        # Reinicia el proceso para montar otro coche.
         proceso['coches']['carroceria'] = 0
         proceso['coches']['ruedas'] = 0
         proceso['coches']['ventanas'] = 0
         proceso['coches']['motor'] = 0
         proceso['coches']['luces'] = 0
         GuardarProceso()
-# Menu de opciones del proceso de producción
 def ProcesoProduccion():
+        # Menu de opciones del proceso de producción
         while True:
                 ParteProduccion = input("Que parte quieres montar(1, 2, 3, 4 o 5). 6 para comprobar. 7 para reiniciar el proceso. 0 para salir: ")
                 match ParteProduccion:
