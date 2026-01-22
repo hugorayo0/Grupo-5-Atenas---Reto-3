@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fábrica</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+</head>
+<body>
+    <div class="contenedor1" id="ContenedorTiempos">
+        <div class="contenedor2" id="Tiempos"></div>
+    </div>
+
+    <div class="contenedor1">
+        <div class="contenedor2">
+            <div class="caja"><button id="BotonCarroceria">Carrocería</button><input type="color" name="color" id="ColorCarroceria" value="#ff0000"></div>
+            <div class="caja"><button id="BotonRuedas">Ruedas</button></div>
+            <div class="caja"><button id="BotonVentanas">Ventanas</button></div>
+            <div class="caja"><button id="BotonMotor">Motor</button></div>
+            <div class="caja"><button id="BotonLuces">Luces</button></div>
+            <div class="caja"><button onclick="Help()">Help</button></div>
+        </div>
+    </div>
+    
+    <p id="MensajeError"></p>
+
+    <canvas id="canvas" height="200" width="700" style="border: 1px black solid; "></canvas>
+    <div class="contenedor1">
+        <div class="contenedor2">
+           <button class="button" id="BotonEnviar">Enviar</button>
+        </div>
+        <div class="contenedor2">
+           <p id="CantidadCoches">Cantidad de coches producida: 0</p>
+        </div>
+    </div>
+
+    <div id=ContenedorHistorial class="contenedor1">
+        <div class="contenedor2" id="Historial"></div>
+    </div>
+    
+    <!-- Vinculacion a archivo script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
