@@ -141,7 +141,7 @@ def mostrar_historial_produccion():
     
     print("\n" + "="*60)
     print(" HISTORIAL DE PRODUCCIÓN")
-    print("="*60)trh
+    print("="*60)
     
     cursor.execute('''
         SELECT mes, SUM(cantidad) as total, SUM(defectos) as defectos_total
