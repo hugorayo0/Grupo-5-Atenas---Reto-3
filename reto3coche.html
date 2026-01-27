@@ -1,109 +1,125 @@
-import sqlite3
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Coche</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #667eea;
+            text-align: center;
+            padding: 20px;
+        }
 
-# Crear base de datos
-def crear_bd():
-    conn = sqlite3.connect('autoplant.db')
-    c = conn.cursor()
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS inventario (
-        pieza TEXT, stock INTEGER, minimo INTEGER)''')
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS produccion (
-        mes TEXT, modelo TEXT, cantidad INTEGER, defectos INTEGER)''')
-    
-    conn.commit()
-    conn.close()
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
 
-# Agregar datos ejemplo
-def datos_ejemplo():
-    conn = sqlite3.connect('autoplant.db')
-    c = conn.cursor()
-    
-    c.execute('SELECT COUNT(*) FROM inventario')
-    if c.fetchone()[0] == 0:
-        piezas = [
-            ('Motores', 450, 300),
-            ('Transmisiones', 280, 250),
-            ('Chasis', 520, 400),
-            ('Paneles Negros', 180, 200)
-        ]
-        c.executemany('INSERT INTO inventario VALUES (?,?,?)', piezas)
+        .car {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            margin: 30px auto;
+        }
+
+        .body {
+            width: 180px;
+            height: 50px;
+            background: #e74c3c;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+        }
+
+        .roof {
+            width: 100px;
+            height: 35px;
+            background: #e74c3c;
+            border-radius: 20px 20px 0 0;
+            position: absolute;
+            bottom: 70px;
+            left: 50px;
+        }
+
+        .wheel {
+            width: 35px;
+            height: 35px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 5px;
+        }
+
+        .wheel-f { left: 30px; }
+        .wheel-b { right: 30px; }
+
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 Mi Coche</h1>
         
-        produccion = [
-            ('Enero', 'Sedán Sport', 245, 3),
-            ('Enero', 'SUV Premium', 189, 2),
-            ('Febrero', 'Sedán Sport', 260, 2)
-        ]
-        c.executemany('INSERT INTO produccion VALUES (?,?,?,?)', produccion)
-    
-    conn.commit()
-    conn.close()
+        <div class="car">
+            <div class="body" id="body"></div>
+            <div class="roof" id="roof"></div>
+            <div class="wheel wheel-f"></div>
+            <div class="wheel wheel-b"></div>
+        </div>
 
-# Ver estadísticas
-def estadisticas():
-    conn = sqlite3.connect('autoplant.db')
-    c = conn.cursor()
-    
-    print("\n=== ESTADÍSTICAS ===")
-    c.execute('SELECT SUM(cantidad), SUM(defectos) FROM produccion')
-    total, defectos = c.fetchone()
-    
-    print(f"Producido: {total} unidades")
-    print(f"Defectos: {defectos}")
-    print(f"Eficiencia: {100 - (defectos/total*100):.1f}%")
-    
-    conn.close()
+        <div>
+            <label>Color: </label>
+            <input type="color" id="color" value="#e74c3c">
+        </div>
 
-# Ver producción
-def produccion():
-    conn = sqlite3.connect('autoplant.db')
-    c = conn.cursor()
-    
-    print("\n=== PRODUCCIÓN ===")
-    c.execute('SELECT * FROM produccion')
-    
-    for mes, modelo, cant, def_ in c.fetchall():
-        print(f"{mes} - {modelo}: {cant} ({def_} defectos)")
-    
-    conn.close()
+        <div>
+            <button onclick="cambiarTipo('sedan')">Sedán</button>
+            <button onclick="cambiarTipo('suv')">SUV</button>
+        </div>
+    </div>
 
-# Ver inventario
-def inventario():
-    conn = sqlite3.connect('autoplant.db')
-    c = conn.cursor()
-    
-    print("\n=== INVENTARIO ===")
-    c.execute('SELECT * FROM inventario')
-    
-    for pieza, stock, minimo in c.fetchall():
-        estado = "BAJO" if stock < minimo else "OK"
-        print(f"{pieza}: {stock} (mín: {minimo}) - {estado}")
-    
-    conn.close()
+    <script>
+        const body = document.getElementById('body');
+        const roof = document.getElementById('roof');
 
-# Menú
-def menu():
-    while True:
-        print("\n=== AUTOPLANT ===")
-        print("1. Estadísticas")
-        print("2. Producción")
-        print("3. Inventario")
-        print("4. Salir")
-        
-        op = input("\nOpción: ")
-        
-        if op == '1':
-            estadisticas()
-        elif op == '2':
-            produccion()
-        elif op == '3':
-            inventario()
-        elif op == '4':
-            break
-        
-        input("\nENTER para continuar...")
+        document.getElementById('color').oninput = (e) => {
+            body.style.background = e.target.value;
+            roof.style.background = e.target.value;
+        };
 
-# Iniciar
-crear_bd()
-datos_ejemplo()
-menu()
+        function cambiarTipo(tipo) {
+            if (tipo === 'suv') {
+                body.style.height = '60px';
+                roof.style.height = '40px';
+                roof.style.bottom = '85px';
+            } else {
+                body.style.height = '50px';
+                roof.style.height = '35px';
+                roof.style.bottom = '70px';
+            }
+        }
+    </script>
+</body>
+</html>
