@@ -306,7 +306,7 @@ if ALogin:
                         # Limpia la pantalla
                         os.system("cls")
                         # Mapa visual de la fábrica
-                        print("""         ______________________________________________
+                        print("""                         ______________________________________________
                         |                                              |      
                         |     ⬛⬛⬛⬛⬛⬛        1. CARROCERIA        |
                         |               ⬛                             |
@@ -338,4 +338,5 @@ if ALogin:
             case _:
 
                 print("No es una opcion en la lista")
+
 
