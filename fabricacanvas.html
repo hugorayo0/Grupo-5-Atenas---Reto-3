@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Animación del Coche</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      margin: 5%;
+      background-color: white;
+      font-family: Arial;
+    }
+
+    .panel {
+      margin-left: 20px;
+      background-color: #eee;
+      padding: 15px;
+      border: 1px solid #ccc;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    #mensaje {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<canvas id="miCanvas" width="720" height="400"></canvas>
+
+<div class="panel">
+  <strong>Montaje del coche</strong><br><br>
+
+  🎨 Color del coche:<br>
+  <input type="color" id="colorPicker" value="#cc0000"
+         onchange="cambiarColor()"><br><br>
+
+  <button id="b1" onclick="montarPieza(0)">Chasis</button><br><br>
+  <button id="b2" onclick="montarPieza(1)" disabled>Ruedas</button><br><br>
+  <button id="b3" onclick="montarPieza(2)" disabled>Cabina</button><br><br>
+  <button id="b4" onclick="montarPieza(3)" disabled>Ventanas</button><br><br>
+  <button id="b5" onclick="montarPieza(4)" disabled>Luces</button><br><br>
+
+  <button id="enviar" onclick="enviar()" disabled>Enviar</button><br><br>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <div id="mensaje"></div>
+</div>
+
+<script>
+const canvas = document.getElementById("miCanvas");
+const ctx = canvas.getContext("2d");
+
+let piezas = [false, false, false, false, false];
+let xCoche = 100;
+let colorCoche = "#cc0000";
+
+// carretera
+function dibujarCarretera() {
+  ctx.fillStyle = "#555";
+  ctx.fillRect(0, 260, canvas.width, 70);
+
+  ctx.strokeStyle = "white";
+  ctx.setLineDash([20, 10]);
+  ctx.beginPath();
+  ctx.moveTo(0, 295);
+  ctx.lineTo(canvas.width, 295);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// coche
+function dibujarCoche() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  dibujarCarretera();
+
+  // Chasis
+  if (piezas[0]) {
+    ctx.fillStyle = colorCoche;
+    ctx.fillRect(xCoche, 235, 180, 30);
+  }
+
+  // Ruedas
+  if (piezas[1]) {
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(xCoche + 35, 270, 15, 0, Math.PI * 2);
+    ctx.arc(xCoche + 140, 270, 15, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Cabina
+  if (piezas[2]) {
+    ctx.fillStyle = colorCoche;
+    ctx.beginPath();
+    ctx.moveTo(xCoche + 40, 235);
+    ctx.lineTo(xCoche + 70, 195);
+    ctx.lineTo(xCoche + 140, 195);
+    ctx.lineTo(xCoche + 155, 235);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Ventanas (delantera y trasera)
+  if (piezas[3]) {
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(xCoche + 75, 205, 30, 22);   // delantera
+    ctx.fillRect(xCoche + 110, 205, 30, 22); // trasera
+  }
+
+  // Luces
+  if (piezas[4]) {
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(xCoche + 175, 245, 15, 12);
+  }
+}
+
+// montar piezas
+function montarPieza(i) {
+  piezas[i] = true;
+  document.getElementById("b" + (i + 1)).disabled = true;
+
+  if (i < piezas.length - 1) {
+    document.getElementById("b" + (i + 2)).disabled = false;
+  }
+
+  if (piezas.every(p => p)) {
+    document.getElementById("enviar").disabled = false;
+  }
+
+  dibujarCoche();
+}
+
+// cambiar color
+function cambiarColor() {
+  colorCoche = document.getElementById("colorPicker").value;
+  dibujarCoche();
+}
+
+// enviar
+function enviar() {
+  document.getElementById("mensaje").innerText =
+    "¡Felicidades por crear tu coche! 🚗";
+  animarCoche();
+}
+
+// animación
+function animarCoche() {
+  const anim = setInterval(() => {
+    xCoche += 5;
+    dibujarCoche();
+    if (xCoche > canvas.width) clearInterval(anim);
+  }, 30);
+}
+
+// reiniciar
+function reiniciar() {
+  piezas = [false, false, false, false, false];
+  xCoche = 100;
+  document.getElementById("mensaje").innerText = "";
+  document.getElementById("enviar").disabled = true;
+
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById("b" + i).disabled = i !== 1;
+  }
+
+  dibujarCoche();
+}
+
+// inicio
+dibujarCarretera();
+</script>
+
+</body>
+</html>
