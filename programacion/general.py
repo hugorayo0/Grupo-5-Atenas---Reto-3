@@ -1,3 +1,5 @@
+// general.py realizado por Aroa, Hugo, Mikel e Ibai
+// Inicio parte realizado por Aroa
 Usuario = 'Admin'
 Password = '1234'
 
@@ -22,6 +24,7 @@ if ALogin:
         Opcion = int(input("Seleccione el apartado que quiera ver por numero: "))
         match Opcion:
             case 1:
+                // Inicio parte realizado por Hugo
                 import json
                 import os
                 
@@ -63,7 +66,9 @@ if ALogin:
                     elif opcion == "4":
                         print("Saliendo...")
                         break
+                        // Final parte realizado por Hugo
             case 2:
+                // Inicio parte realizado por Mikel
                 import sqlite3
                 
                 # Crear base de datos
@@ -173,8 +178,10 @@ if ALogin:
                 crear_bd()
                 datos_ejemplo()
                 menu()
+                // Final parte realizado por Mikel
             case 3:
-                         # Este python consiste en un mapa de la distribución de la fábrica de coches y proceso de producción de coches.
+                // Inicio parte realizado por Ibai
+                # Este python consiste en un mapa de la distribución de la fábrica de coches y proceso de producción de coches.
                 
                 import os # Permite utilizar comandos del sistema como limpiar la pantalla, etc..
                 import json # Permite leer y escribir en archivos json
@@ -332,11 +339,13 @@ if ALogin:
                                 ProcesoProduccion()
                         else:
                                 print("Opción no válida")
+            // Final parte realizado por Ibai
             case 4:
                 print("Cerrando sesión")
                 break
             case _:
 
                 print("No es una opcion en la lista")
+// Final parte realizado por Aroa
 
 
