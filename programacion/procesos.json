@@ -1,3 +1,4 @@
+// procesos.json realizado por Ibai
 {
     "coches": {
         "carroceria": 0,
@@ -6,4 +7,5 @@
         "motor": 0,
         "luces": 0
     }
+
 }
