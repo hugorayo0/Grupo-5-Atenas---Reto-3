@@ -1,0 +1,69 @@
+/* styleGlobal.css realizado por Ibai */
+body{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    justify-items: center;
+    user-select: none;
+}
+.contenedor1{
+    background-color: rgb(134, 133, 133);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0px ;
+    padding-top: 0px;
+    margin-top: 1%;
+    width: 700px;
+    border: 1px solid black;
+}
+canvas, .contenedor1, .caja, button, input, .button{
+    border-radius: 6px;
+}
+nav{
+    padding: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: #edf2fa;
+    text-align: center;
+}
+#BtnProduccion{
+    padding: 10px;
+    background-color: rgb(127, 125, 125);
+    color: white;
+    border-radius: 16px;
+    border: 3px solid black;
+}
+.contenedor2{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+.caja{
+    padding: 10px;
+    margin: 6px;
+    width: max-content;
+    border: 1px solid black;
+}
+button, input{
+    padding:10px;
+    background-color: rgb(180, 219, 206);
+    cursor: pointer;
+}
+button:hover, input:hover{
+    background-color: rgb(230, 219, 206);
+}
+.button{
+    width: 250px;
+    background-color: rgb(180, 219, 206);
+    cursor: pointer;
+}
+#ColorCarroceria{
+    height: 38px;
+    margin-left: 6px;
+}
+#Historial{
+    justify-content: center;
+}
+.ContenedorHelp{
+    margin: 25px;
+}
