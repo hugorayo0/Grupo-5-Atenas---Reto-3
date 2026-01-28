@@ -1,4 +1,5 @@
 // ScriptRRHH.js realizado por ibai
+// He necesitado un poco de ayuda de ChatGPT con la parte de la comprobación y colocar el color correspondiente si la respuesta es correcta o incorrecta
 function comprobar(){
   let Contador = 0;
 
@@ -16,7 +17,4 @@ function comprobar(){
   let Porcentaje = ((Contador / TOTAL_PREGUNTAS) * 100).toFixed(0)
   const resultado = document.getElementById("resultado");
   resultado.innerHTML = "Clasificación: "+Contador+"/20.<br>Porcentaje: "+Porcentaje+"%"
-}
-function BtnProduccion(){
-    window.location.href = "Fabrica.html"
 }
