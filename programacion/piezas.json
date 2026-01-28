@@ -1,3 +1,4 @@
+// piezas.json realizado por Hugo 
 {
     "Motor completo": 2,
     "Bloque motor": 1,
@@ -61,4 +62,5 @@
     "Aceite motor (litros)": 500,
     "Líquido refrigerante (litros)": 300,
     "Líquido de frenos (litros)": 200
+
 }
