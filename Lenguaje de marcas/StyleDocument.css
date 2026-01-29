@@ -47,3 +47,7 @@ nav{
 button:hover, input[type="radio"]:hover, label{
     cursor: pointer;
 }
+img{
+    margin-top: 25px;
+    width: 560px;
+}
