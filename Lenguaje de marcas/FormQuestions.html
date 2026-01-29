@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Form</title>
+</head>
+
+<style>
+    
+    .Sections {
+        border: 2px solid rgb(134, 171, 244);
+        padding: 10px;
+        width: 400px;
+    }
+</style>
+
+<body>
+    <h1>Company Form Questionary</h1>
+
+    <form action="" method="post">
+
+        <!-- Client Information -->
+        <div class="Sections">
+
+            <label for="company_name">What name does your company have?</label><br>
+            <input type="text" id="company_name" name="company_name"><br><br>
+
+            <label for="products_services">What products or services do you sell?</label><br>
+            <input type="text" id="products_services" name="products_services"><br><br>
+
+            <label for="technologies_used">What technologies do you use in your company?</label><br>
+            <input type="text" id="technologies_used" name="technologies_used"><br><br>
+
+            <label for="impact_society">How does your company impact society?</label><br>
+            <input type="text" id="impact_society" name="impact_society"><br><br>
+
+            <label for="ongoing_projects">Do you have any ongoing projects?</label><br>
+            Yes <input type="radio" name="Affirmative" id="Affirmative">
+            No <input type="radio" name="Negative" id="Negative"> <br><br>
+
+        </div>
+        <br>
+        <div class="Sections">
+            <!-- Project Details -->
+            <label for="improvements">What improvements would you like to make in your company?</label><br>
+            <input type="text" id="improvements" name="improvements"><br><br>
+
+            <label for="new_technologies">Will you implement any new technologies?</label><br>
+            Yes <input type="radio" name="Affirmative" id="Affirmative">
+            No <input type="radio" name="Negative" id="Negative"><br><br>
+
+            <label for="resources_needed">What resources will you need for your current project?</label><br>
+            <input type="text" id="resources_needed" name="resources_needed"><br><br>
+
+            <label for="tasks_prioritized">What tasks would you prioritize if time were limited?</label><br>
+            <input type="text" id="tasks_prioritized" name="tasks_prioritized"><br><br>
+
+            <label for="handle_issues">How would you handle the project if unexpected issues happened?</label><br>
+            <input type="text" id="handle_issues" name="handle_issues"><br><br>
+
+        </div>
+
+        <br>
+
+        <div class="Sections">
+            <!-- Component Analysis -->
+            <label for="tests_performed">What tests do you perform to check that your machines work as they should?</label><br>
+            <input type="text" id="tests_performed" name="tests_performed"><br><br>
+
+            <label for="tests_frequency">How often do you run these tests?</label><br>
+            Daily <input type="radio" name="Daily" id="Daily">
+            Weekly <input type="radio" name="Weekly" id="Weekly">
+            Monthly <input type="radio" name="Monthly" id="Monthly"> <br>
+            Other <input type="text" id="tests_frequency" name="tests_frequency"><br><br>
+
+            <label for="components_tested">Which components did you test recently?</label><br>
+            <input type="text" id="components_tested" name="components_tested"><br><br>
+
+            <label for="unexpected_result">What would you do if when running the tests it showed an unexpected result?</label><br>
+            <input type="text" id="unexpected_result" name="unexpected_result"><br><br>
+
+            <label for="replace_machine">Would you consider replacing a machine if it was faulty?</label><br>
+            Yes <input type="radio" name="Affirmative2" id="Affirmative">
+            No <input type="radio" name="Negative2" id="Negative"><br><br>
+
+        </div>
+
+        <br>
+
+        <input type="submit" value="Submit Form" onclick="alert ('Form sent succesfully');">
+
+    </form>
+</body>
+</html>
